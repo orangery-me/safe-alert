@@ -1,0 +1,101 @@
+version: '3.8'
+
+networks:
+    app-network:
+        driver: bridge
+
+services:
+    api:
+        container_name: backend-api
+        restart: on-failure
+        image: base
+        # Uncomment the line below to run on mac os
+        # platform: linux/arm64/v8
+        ports:
+            - '3000:3000'
+        env_file:
+            - .env
+        environment:
+            - DB_HOST=postgres-db
+        volumes:
+            - type: bind
+              source: .
+              target: /home/app
+            - /home/app/node_modules
+        depends_on:
+            - base
+            - init_db
+        networks:
+            - app-network
+        command: sh -c 'npm install && npm run dev'
+
+    base:
+        build: .
+        image: base
+        # Uncomment the line below to run on mac os
+        # platform: linux/arm64/v8
+        env_file:
+            - .env
+        environment:
+            - DB_HOST=postgres-db
+        depends_on:
+            - db
+        networks:
+            - app-network
+
+    db:
+        container_name: postgres-db
+        image: postgis/postgis:16-3.4-alpine
+        restart: always
+        environment:
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=safe-alert
+        ports:
+            - '5432:5432'
+        networks:
+            - app-network
+
+    init_db:
+        image: base
+        # Uncomment the line below to run on mac os
+        # platform: linux/arm64/v8
+        env_file:
+            - .env
+        environment:
+            - DB_HOST=postgres-db
+            - POSTGRES_USER=postgres
+            - POSTGRES_PASSWORD=postgres
+            - POSTGRES_DB=safe-alert
+        depends_on:
+            - db
+            - base
+        volumes:
+            - .:/home/app
+            - ./scripts/wait-for-it.sh:/home/app/scripts/wait-for-it.sh
+        command:
+            [
+                './scripts/wait-for-it.sh',
+                'postgres-db:5432',
+                '--',
+                'sh',
+                '-c',
+                'yarn db:reset',
+            ]
+        networks:
+            - app-network
+
+    pgadmin:
+        container_name: mypgadmin
+        image: dpage/pgadmin4
+        restart: always
+        env_file:
+            - .env
+        ports:
+            - '5050:80'
+        networks:
+            - app-network
+        links:
+            - db:pg-server
+        logging:
+            driver: 'none'

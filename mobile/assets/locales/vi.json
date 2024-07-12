@@ -1,0 +1,57 @@
+{
+  "texts": {
+    "notification": "Thông báo",
+    "success": "Thành công",
+    "error_occur": "Đã có lỗi xảy ra, vui lòng thử lại sau",
+    "full_name": "Họ và tên",
+    "email_address": "Email",
+    "phone_number": "Số điện thoại",
+    "DOB": "Ngày sinh",
+    "Address": "Địa chỉ",
+    "password": "Mật khẩu",
+    "confirm_password": "Xác nhận mật khẩu",
+    "remember_me": "Nhớ mật khẩu",
+    "forgot_password": "Quên mật khẩu?",
+    "dont_have_account": "Chưa có tài khoản?",
+    "you_have_an_account": "Bạn đã có tài khoản?"
+  },
+  "button": {
+    "cancel": "Hủy",
+    "confirm": "Xác nhận",
+    "try_again": "Thử lại"
+  },
+  "root": {
+    "home": "Trang chủ",
+    "profile": "Cá nhân",
+    "management": "Quản lý"
+  },
+  "auth": {
+    "welcome_back": "Rất vui khi được gặp lại bạn!",
+    "thank_you_for_registering": "Cảm ơn bạn đã đăng ký!",
+    "sign_in": "Đăng nhập",
+    "sign_up": "Đăng ký"
+  },
+  "validator": {
+    "email_required": "Vui lòng nhập email",
+    "password_required": "Vui lòng nhập mật khẩu",
+    "invalid_email": "Không đúng định dạng email",
+    "invalid_phone_number": "Không đúng định dạng số điện thoại",
+    "incorrect_phone_number_password": "Số điện thoại hoặc mật khẩu không đúng",
+    "incorrect_email_password": "Email hoặc mật khẩu không đúng",
+    "invalid_password": "Mật khẩu phải có độ dài trong khoảng từ 6 tới 30 và không chưa kí tự đặc biệt",
+    "field_required": "Không được để trống",
+    "not_match_password": "Mật khẩu xác nhận không trùng khớp",
+    "email_or_phone_number_exists": "Email hoặc số điện thoại đã tồn tại"
+  },
+  "emergency_post": {
+    "information": "Thông tin cần thiết",
+    "whats_emergency": "Tình huống khẩn cấp của bạn là gì?",
+    "upload_images_videos": "Tải ảnh hoặc video",
+    "note": "Ghi chú",
+    "submit": "Đăng bài",
+    "submit_success": "Bài viết của bạn đã được đăng thành công"
+  },
+  "loading": {
+    "ads": "Đang tải quảng cáo..."
+  }
+}
